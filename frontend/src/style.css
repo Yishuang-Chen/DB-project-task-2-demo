@@ -1,0 +1,568 @@
+/*
+ * style.css
+ *
+ * 这个文件保存全局样式。
+ *
+ * Vue 组件负责页面结构和业务逻辑；
+ * CSS 负责颜色、间距、布局和视觉效果。
+ *
+ * 本次界面采用教务系统常见结构：
+ * 1. 登录页单独居中显示。
+ * 2. 登录后页面使用左侧导航栏。
+ * 3. 左上角预留学校校徽。
+ * 4. 左侧菜单纵向排列各类查询或管理模块。
+ */
+
+/* 所有元素统一使用 border-box，方便计算宽度。 */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: #1f2937;
+  background: #f5f7fb;
+  font-family:
+    Inter,
+    "Segoe UI",
+    "Microsoft YaHei",
+    Arial,
+    sans-serif;
+  font-size: 14px;
+  letter-spacing: 0;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+button,
+input,
+textarea,
+select {
+  letter-spacing: 0;
+}
+
+/* ---------------- 登录页样式 ---------------- */
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 32px 20px;
+  background:
+    linear-gradient(135deg, rgba(47, 111, 237, 0.12), transparent 34%),
+    linear-gradient(315deg, rgba(22, 163, 74, 0.1), transparent 36%),
+    #f5f7fb;
+}
+
+/*
+ * login-school-brand 是登录框上方的学校标识区域。
+ * 它和登录框使用相同的最大宽度，这样视觉上上下对齐。
+ */
+.login-school-brand {
+  width: min(420px, 100%);
+  min-height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*
+ * login-school-image 用于显示真实图片。
+ * 如果后续放入的是横版校名图片，max-height 可以限制高度，避免图片过大。
+ */
+.login-school-image {
+  max-width: 100%;
+  max-height: 78px;
+  object-fit: contain;
+}
+
+.login-panel {
+  width: min(420px, 100%);
+  padding: 32px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+}
+
+.brand-block {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.brand-mark {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+  background: #2f6fed;
+  font-weight: 700;
+}
+
+.brand-block h1 {
+  margin: 0;
+  color: #111827;
+  font-size: 22px;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.brand-block p {
+  margin: 6px 0 0;
+  color: #6b7280;
+}
+
+.login-form {
+  width: 100%;
+}
+
+.login-button {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.demo-account-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 22px;
+  color: #6b7280;
+}
+
+.demo-account {
+  height: 30px;
+  padding: 0 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  color: #374151;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.demo-account:hover {
+  border-color: #2f6fed;
+  color: #2f6fed;
+}
+
+/* ---------------- 登录后布局样式 ---------------- */
+
+/*
+ * layout-shell 是登录后页面的最外层。
+ * display:flex 让左侧栏和右侧内容横向排列。
+ */
+.layout-shell {
+  min-height: 100vh;
+  display: flex;
+  background: #f5f7fb;
+}
+
+/*
+ * layout-sidebar 是左侧导航栏。
+ * width 固定，右侧内容区自动占满剩余空间。
+ */
+.layout-sidebar {
+  width: 260px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #e5e7eb;
+  background: #ffffff;
+}
+
+/* 左上角品牌和校徽区域。 */
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 22px 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* 校徽真实图片样式。 */
+.school-logo {
+  width: 48px;
+  height: 48px;
+  flex: 0 0 auto;
+  border-radius: 8px;
+  object-fit: contain;
+  background: #f9fafb;
+}
+
+.brand-text {
+  min-width: 0;
+}
+
+.brand-text strong {
+  display: block;
+  color: #111827;
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.brand-text span {
+  display: block;
+  margin-top: 4px;
+  color: #6b7280;
+  font-size: 12px;
+}
+
+/* 左侧菜单区域。 */
+.sidebar-menu {
+  flex: 1;
+  padding: 18px 12px;
+  overflow-y: auto;
+}
+
+.sidebar-menu-title {
+  padding: 0 10px 10px;
+  color: #6b7280;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/*
+ * 每个菜单项使用 button。
+ * 原因是菜单项需要点击切换模块，button 比普通 div 更符合语义。
+ */
+.sidebar-menu-item {
+  width: 100%;
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 8px;
+  color: #374151;
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sidebar-menu-item:hover {
+  background: #eef4ff;
+  color: #1d4ed8;
+}
+
+.sidebar-menu-item.active {
+  color: #ffffff;
+  background: #2f6fed;
+}
+
+.sidebar-menu-item small {
+  flex: 0 0 auto;
+  padding: 2px 6px;
+  border-radius: 999px;
+  color: #6b7280;
+  background: #eef2f7;
+  font-size: 11px;
+}
+
+.sidebar-menu-item.active small {
+  color: #dbeafe;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* 右侧主区域。 */
+.layout-main {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 右侧顶部栏。 */
+.layout-topbar {
+  min-height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 22px 32px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #ffffff;
+}
+
+.layout-topbar h1 {
+  margin: 0;
+  color: #111827;
+  font-size: 24px;
+  line-height: 1.25;
+}
+
+.layout-topbar p {
+  margin: 6px 0 0;
+  color: #6b7280;
+}
+
+.topbar-user {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.user-info {
+  text-align: right;
+}
+
+.user-name {
+  display: block;
+  color: #111827;
+  font-weight: 700;
+}
+
+.user-role {
+  display: block;
+  margin-top: 4px;
+  color: #6b7280;
+  font-size: 12px;
+}
+
+/* 右侧内容区。 */
+.layout-content {
+  width: min(1180px, calc(100% - 40px));
+  margin: 24px auto;
+}
+
+/* ---------------- 通用内容样式 ---------------- */
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.search-input {
+  width: 320px;
+}
+
+.semester-select {
+  width: 150px;
+}
+
+.toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.table-section {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.muted-text {
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.course-name {
+  color: #111827;
+  font-weight: 700;
+}
+
+.number-input {
+  width: 100%;
+}
+
+/* 学生端顶部摘要卡片。 */
+.student-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.student-summary > div {
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.summary-label {
+  display: block;
+  margin-bottom: 6px;
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.student-summary strong {
+  color: #111827;
+  font-size: 20px;
+}
+
+/*
+ * content-card 只是内容分组，不做卡片边框。
+ * 具体表格仍然由 table-section 负责边框。
+ */
+.content-card {
+  margin-bottom: 22px;
+}
+
+.section-heading {
+  margin-bottom: 12px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  color: #111827;
+  font-size: 18px;
+}
+
+.section-heading p {
+  margin: 6px 0 0;
+  color: #6b7280;
+}
+
+/* 待实现模块占位区域。 */
+.placeholder-panel {
+  padding: 28px;
+  border: 1px solid #dbe3ef;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.placeholder-heading {
+  max-width: 720px;
+}
+
+.placeholder-badge {
+  display: inline-flex;
+  margin-bottom: 10px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  color: #166534;
+  background: #dcfce7;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.placeholder-heading h2 {
+  margin: 0;
+  color: #111827;
+  font-size: 22px;
+}
+
+.placeholder-heading p {
+  margin: 8px 0 0;
+  color: #6b7280;
+}
+
+.placeholder-task-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.placeholder-task {
+  padding: 12px 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  color: #374151;
+  background: #f9fafb;
+}
+
+.el-table .el-button {
+  min-width: 62px;
+}
+
+/* ---------------- 响应式布局 ---------------- */
+
+@media (max-width: 900px) {
+  .layout-shell {
+    flex-direction: column;
+  }
+
+  .layout-sidebar {
+    width: 100%;
+    min-height: auto;
+    border-right: 0;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .sidebar-menu {
+    display: flex;
+    gap: 8px;
+    padding: 12px;
+    overflow-x: auto;
+  }
+
+  .sidebar-menu-title {
+    display: none;
+  }
+
+  .sidebar-menu-item {
+    width: auto;
+    min-width: 120px;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .login-panel {
+    padding: 24px;
+  }
+
+  .layout-topbar {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .topbar-user {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .user-info {
+    text-align: left;
+  }
+
+  .layout-content {
+    width: calc(100% - 24px);
+    margin: 16px auto;
+  }
+
+  .toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .search-input,
+  .semester-select {
+    width: 100%;
+  }
+
+  .toolbar-actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .student-summary {
+    grid-template-columns: 1fr;
+  }
+}
